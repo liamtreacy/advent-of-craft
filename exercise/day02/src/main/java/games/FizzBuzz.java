@@ -5,9 +5,7 @@ public class FizzBuzz {
     }
     
     public static String convert(Integer input) throws OutOfRangeException {
-        if (input <= 0 || input > 100){
-            throw new OutOfRangeException();
-        }
+        checkIsInRange(input);
 
         if (input % 3 == 0 && input % 5 == 0) {
             return "FizzBuzz";
@@ -19,5 +17,11 @@ public class FizzBuzz {
             return "Buzz";
         }
         return input.toString();
+    }
+
+    private static void checkIsInRange(Integer input) throws OutOfRangeException {
+        if (input <= 0 || input > 100){
+            throw new OutOfRangeException();
+        }
     }
 }
