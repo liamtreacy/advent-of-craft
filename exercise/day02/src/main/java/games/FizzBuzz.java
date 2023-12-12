@@ -9,19 +9,19 @@ public class FizzBuzz {
             throw new OutOfRangeException();
         }
 
-        if (input <= 100) {
-            if (input % 3 == 0 && input % 5 == 0) {
-                return "FizzBuzz";
-            }
-            if (input % 3 == 0) {
-                return "Fizz";
-            }
-            if (input % 5 == 0) {
-                return "Buzz";
-            }
-            return input.toString();
-        } else {
+        if (input > 100){
             throw new OutOfRangeException();
         }
+
+        if (input % 3 == 0 && input % 5 == 0) {
+            return "FizzBuzz";
+        }
+        if (input % 3 == 0) {
+            return "Fizz";
+        }
+        if (input % 5 == 0) {
+            return "Buzz";
+        }
+        return input.toString();
     }
 }
