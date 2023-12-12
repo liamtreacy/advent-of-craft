@@ -9,6 +9,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.function.ToIntFunction;
 import java.util.stream.Collectors;
 
 import static java.lang.Integer.MAX_VALUE;
@@ -44,9 +45,19 @@ class PopulationTests {
 
     @Test
     void whoOwnsTheYoungestPet() {
-        var filtered = population.stream().min(Comparator.comparingInt(person -> person.pets().stream().mapToInt(Pet::age).min().orElse(Integer.MAX_VALUE))).orElse(null);
+        var filtered = population
+                .stream()
+                .min(
+                        Comparator.comparingInt(
+                                getYoungestPetAge())
+                )
+                .orElse(null);
 
         assert filtered != null;
         assertThat(filtered.firstName()).isEqualTo("Lois");
+    }
+
+    private static ToIntFunction<Person> getYoungestPetAge() {
+        return person -> person.pets().stream().mapToInt(Pet::age).min().orElse(Integer.MAX_VALUE);
     }
 }

@@ -9,7 +9,12 @@ public record Person(String firstName, String lastName, List<Pet> pets) {
     }
 
     public Person addPet(PetType petType, String name, int age) {
-        pets.add(new Pet(petType, name, age));
+        addPet(new Pet(petType, name, age));
+        return this;
+    }
+
+    private Person addPet(Pet p) {
+        pets.add(p);
         return this;
     }
 }
